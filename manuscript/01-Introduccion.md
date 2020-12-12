@@ -43,3 +43,21 @@ Tal y como muestra la imagen anterior, el flujo de una petición en una aplicaci
 2. La petición se envía al router, el cual la reenvía al controlador correspondiente.
 3. El controlador atiende la petición y realiza las acciones correspondientes (por ejemplo, puede interactuar con la base de datos para cargar o almacenar información).
 4. Por último, el controlador genera la vista correspondiente y se la envía al cliente.
+
+## Estructura de carpetas
+Laravel crea una estructura de ficheros como punto de partida para todo tipo de aplicaciones:
+
+- /app: contienne el código fuente de la aplicación y la mayoría de las clases que crearemos
+- /bootstrap: contiene el archivo `app.php`, el cual arranca el framework. También contiene la carpeta `/cache` en la que Laravel almacena los archivos generados y así optimizar su rendimiento.
+- /config: contiene la configuración de la aplicación, de la conexión a base de datos, sistema de ficheros, etc. A pesar de ello, es conveniente realizar los cambios de configuración en el archivo .ENV y no en los archivos de configuración de esta carpeta.
+- /database: contiene todos los ficheros relacionados con el almacenamiento de datos.
+- public: contiene el fichero `index.php`, el cual será el punto de entrada a nuestra aplicación, es decir, recibirá todas las peticiones que reciba nuestra aplicación. `/public` es el único directorio accesible públicamente, por lo que contiene todos los archivos estáticos: .js, .css y las imágenes. 
+- /resources: contiene las vistas de la aplicación que se utilizarán para generar los ficheros HTML y los archivos CSS y JS no compilados (una vez compilados Laravel los guardará en la carpeta `/public`). También contiene los archivos de traducción.
+- /routes: contiene los archivos de rutas a nuestra aplicación o API. La diferencia entre estos dos, es que el segundo no contiene información sobre las sesiones, cookies, etc.
+- /storage: contiene las vistas compiladas y otros archivos generados por laravel. La carpeta `storage\app\public` se utilizará para almacenar los archivos subidos por nuestros usuarios (por ejemplo, fotos de perfil).
+
+
+
+
+- /
+- 
