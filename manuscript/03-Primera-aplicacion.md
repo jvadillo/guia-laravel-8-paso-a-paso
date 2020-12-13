@@ -319,10 +319,10 @@ Cada método tiene su función:
 |---|---|---|---|
 | GET | /articulos | index | Muestra todos los artículos  |
 | GET | /articulos/create | create | Muestra el formulario para crear un artículo  |
-| POST | /articulos | store | Crea un nuevo artículo a partir de la información recibida  |
-| GET | /articulos/{id} | show | Muestra la información de un artículo  |
-| GET | /articulos/{id}/edit | edit | Muestra el formulario de edición de un artículo  |
-| PUT/PATCH | /articulos/{id} | update | Actualiza el artículo indicado a partir de la información recibida |
+| POST | /articulos | store | Guarda un nuevo artículo a partir de la información recibida  |
+| GET | /articulos/{id} | show | Muestra la información de un artículo específico  |
+| GET | /articulos/{id}/edit | edit | Muestra el formulario de edición de un artículo que ya existe  |
+| PUT/PATCH | /articulos/{id} | update | Guardar los cambios del artículo indicado a partir de la información recibida |
 | DELETE | /articulos/{id} | destroy | Elimina el artículo con el ID indicado |
 
 
