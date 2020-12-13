@@ -37,7 +37,7 @@ php artisan key:generate
 Homestead realiza este paso por nosotros, por lo que si estás utilizando Homestead los permisos deberían estar correctamente establecidos. Si no estás utilizando Homestead o quieres desplegar tu aplicación en un servidor, no olvides establecer permisos de escritura para el servidor web en los directorios `storage` y  `bootstrap/cache`.
 
 ## Paso 3 - Crear un Router
-Cada vez que un usuario hace una petición a una de las rutas de la aplicación, Laravel trata la petición mediante un Router definido en el directorio `routes`, el cual será el encargado de direccionar la petición a un Controlador. Las rutas accesibles para navegadores estarán definidas en el archivo `routes/web.php` y aquellas accesibles para servicios web (webservices) estarán definidas en el archivo `routes/api.php`. A continuación se muestra un ejemplo:
+Las rutas son los puntos de entrada a nuestra aplicación. Cada vez que un usuario hace una petición a una de las rutas de la aplicación, Laravel trata la petición mediante un Router definido en el directorio `routes`, el cual será el encargado de direccionar la petición a un Controlador. Las rutas accesibles para navegadores estarán definidas en el archivo `routes/web.php` y aquellas accesibles para servicios web (webservices) estarán definidas en el archivo `routes/api.php`. A continuación se muestra un ejemplo:
 
 ```php
 Route::get('/articulos', function () {
@@ -46,7 +46,33 @@ Route::get('/articulos', function () {
 
 ```
 
-El código anterior muestra cómo se define una ruta básica. En este caso, cuando el usuario realice una petición sobre `/articulos`, nuestra aplicación enviará una respuesta al usuario con el string '¡Vamos a leer unos articulos!'.
+El código anterior muestra cómo se define una ruta básica. En este caso, cuando el usuario realice una petición sobre `/articulos`, nuestra aplicación ejecutará la función anónima definida. En este caso enviará una respuesta al usuario con el string '¡Vamos a leer unos articulos!'.
+
+Podemos especificar tantas rutas como queramos:
+
+```php
+Route::get('/articulos', function () {
+    return '¡Vamos a leer unos articulos!';
+});
+
+Route::get('/usuarios', function () {
+    return 'Hay muchos usuarios en esta aplicación';
+});
+
+```
+
+También es posible responder a peticiones de tipo POST, por ejemplo para recibir datos de formularios: 
+
+```php
+Route::get('/articulos', function () {
+    return '¡Vamos a leer unos articulos!';
+});
+
+Route::post('/articulos', function () {
+    return '¡Vamos a insertar un artículo!';
+});
+
+```
 
 Aparte de ejecutar las acciones definidas para cada ruta, Laravel ejecutará el middlewere específico en función del Router utilizado (por ejemplo, el middlewere relacionado con las peticiones web proveerá de funcionalidades como el estado de la sesión o la protección [CSRF](https://es.wikipedia.org/wiki/Cross-site_request_forgery).
 
@@ -80,9 +106,18 @@ Los parámetros de ruta vienen definidos entre llaves `{}` y se inyectan automá
 
 ```php
 Route::get('articulos/{id}/user/{name}', function ($id, $name) {
-    // Tu código aquí.
+    return 'Vas a leer el artículo: '.$id. ' del usuario' .$name;
 });
 ```
+
+Para indicar un parámetro como opcional, le tenemos que añadir el símbolo `?` al final del parámentro. Le tendremos que añadir un valor por defecto para asegurarnos su correcto funcionamiento:
+
+```php
+Route::get('articulos/{id?}', function ($id = 0) {
+    return 'Vas a leer el artículo: '.$id. ' del usuario' .$name;
+});
+```
+
 
 #### Acceder a la información de la petición
 También es posible acceder a la información enviada en la petición. Por ejemplo, el siguiente código devolverá el valor enviado para el parámetro 'fecha' de la URL `/articulos?fecha=hoy`:
