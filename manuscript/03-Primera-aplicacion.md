@@ -143,6 +143,9 @@ Las vistas contienen el HTML que sirve nuestra aplicación a los usuarios. Se al
 </html>
 ```
 
+Tendrán la extensión `.blade.php` ya que Laravel utiliza el motor de plantillas Blade, como veremos más adelante.
+
+
 #### Devolver una vista
 Cargar y devolver una vista al usuario es tan sencillo como utilizar la función global (helper) `view()`:
 
@@ -151,6 +154,7 @@ Route::get('/articulos', function () {
     return view('articulos');
 });
 ```
+No es necesario indicar la ruta completa de la vista ni la extensión `.blade.php`. Laravel asume que las vistas estarán en la carpeta `/resources/views` y tendrán la extensión `.blade.php`.
 
 #### Acceder a datos desde la vista
 
@@ -159,6 +163,7 @@ Laravel utiliza el motor de plantillas [Blade](https://laravel.com/docs/6.x/blad
 En Blade mostrar datos almacenados en variables es muy sencillo:
 
 ```html
+<?php $nombre = "Nora"; ?>
 <html>
     <body>
 	<h1>Vamos a leer al escritor {{ $nombre }}</h1>
@@ -168,8 +173,36 @@ En Blade mostrar datos almacenados en variables es muy sencillo:
 ```
 
 Tal y como se puede ver en el ejemplo anterior, basta con escribir el nombre de la variable entre llaves `{{ }}`.
+Es una buena práctica evitar mezclar el código PHP con nuestras vistas, por lo que toda la información que necesitemos en las vistas la ubicaremos fuera de ellas. Existen distintas formas de pasarle variables a las vistas:
 
-También es posible iterar por los datos de una colección o array. El siguiente ejemplo muestra como iterar por un array de strings de forma rápida:
+La primera opción sería utilizando el método `with()`, pasándole como parámetros el nombre de la variable y su valor:
+
+```php
+Route::get('/', function () {
+    $nombre = "Nora";
+    return view('saludo')->with('nombre', $nombre);
+});
+```
+
+Otra forma sería enviándolo como array:
+
+```php
+Route::get('/', function () {
+    $nombre = "Nora";
+    return view('saludo')->with(['nombre' => $nombre]);
+});
+```
+
+También podríamos pasar el array como segundo parámetro de la función `view()` y no utilizar `with()`:
+
+```php
+Route::get('/', function () {
+    $nombre = "Nora";
+    return view('saludo',['nombre' => $nombre]);
+});
+```
+
+También es posible iterar por los datos de una colección o array. El siguiente ejemplo muestra cómo iterar por un array de strings de forma rápida:
 
 ```html
 <!-- Vista almacenada en resources/views/articulos.blade.php -->
