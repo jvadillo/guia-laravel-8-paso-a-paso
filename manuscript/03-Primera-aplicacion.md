@@ -693,21 +693,41 @@ Lo primero será crear un formulario con la información de un artículo:
 
 ```html
 <form action="{{ route('articles.store') }}" method="POST">
-    {{ csrf_field() }}
-    <div>
-        <label>Titulo:</label>
-    </div>
-    <div>
-        <input type="text" name="title" id="titulo">
-    </div>
-    <div>
-        <label>Texto del artículo:</label>
-    </div>
-    <div>
-        <textarea name="body" id="body"></textarea>
+    @csrf
+    <input type="text" name="titulo" id="titulo">
+    <textarea name="contenido" id="contenido"></textarea>
     </div>
     <button type="submit">Crear Artículo</button>
 </form>
 ```
+
+La directiva `@csrf` agrega un campo oculto con el Token de usuario para que Laravel nos proteja automáticamente de ataques XSS o de suplantación de identidad. Es necesario agregar siempre esta directiva.
+
+El método del controlador encargado de procesar la información y almacenarla en la base de datos realizará lo siguiente:
+
+```php
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $article = new Article;
+
+        $article->title = $request->get('titulo'); // acceder a los campos del formulario
+        $article->body = request('contenido'); // método alternativo para acceder a los campos
+        $article->save();
+
+        return view('articles.index');
+    }
+```
+
+En el ejemplo anterior se puede apreciar cómo Laravel inyecta en el parámetro de tipo `Request` toda la información enviada en la petición del usuario. Para acceder a dicha información tendremos dos optiones:
+
+Utilizando el parámetro inyectado `$request`: `$article->title = $request->get('titulo');`
+
+Utilizando la función `request()`: `$article->title = request('titulo');`
 
 
