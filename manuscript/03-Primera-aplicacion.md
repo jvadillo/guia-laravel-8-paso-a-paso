@@ -305,7 +305,7 @@ class ArticuloController extends Controller
      */
     public function show($id)
     {
-        return view('show', ['articulo' => 'Mi primer artículo de Laravel');
+        return view('articulos', ['articulo' => 'Mi primer artículo de Laravel');
     }
 }
 ```
@@ -327,7 +327,7 @@ Cada método tiene su función:
 
 
 #### Enrutar el Controlador
-El siguiente paso es añadir al Router la llamada a los métodos del Controlador.
+El siguiente paso es añadir al Router las llamadas a los métodos del Controlador. En este caso crearemos las siguientes
 
 ```php
 Route::get('articulos/', 'ArticuloController@index');
@@ -335,8 +335,22 @@ Route::get('articulos/{id}', 'ArticuloController@show');
 Route::get('articulos/{id}/create', 'ArticuloController@create');
 Route::post('articulos/', 'ArticuloController@store');
 ```
-
 De esta forma direccionaremos las peticiones a los métodos de los controladores.
+
+Existe otra forma más rápida para generar automáticamente las rutas a todos los métodos de nuestro controlador:
+
+```php
+Route::resource('articulos', 'ArticuloController@index');
+```
+
+Si ejecutamos el comando `php artisan route:list` podemos comprobar cómo ya disponemos de todas las rutas a nuestro recurso y que cada una apunta al método correspondiente en el controlador.
+
+Esta opción también ofrece la posibilidad de generar únicamente las rutas que le indiquemos. El siguiente ejemplo muestra como generar únicamene las rutas index y create:
+
+```php
+Route::resource('articulos', 'ArticuloController@index')->only['index','create'];
+```
+
 
 ## Paso 6 - Configurar la base de datos
 Es muy difícil de imaginar una aplicación web que no haga uso de una base de datos para almacenar la información. A continuación veremos como preparar la base de datos para nuestra aplicación.
