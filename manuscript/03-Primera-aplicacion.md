@@ -105,7 +105,7 @@ Route::get('articulos/{id}', function ($id) {
 Los parámetros de ruta vienen definidos entre llaves `{}` y se inyectan automáticamente en las callbacks. Es posible utilizar más de un parámetro de ruta:
 
 ```php
-Route::get('articulos/{id}/user/{name}', function ($id, $name) {
+Route::get('articulos/{id}/usuario/{name}', function ($id, $name) {
     return 'Vas a leer el artículo: '.$id. ' del usuario' .$name;
 });
 ```
@@ -124,9 +124,32 @@ También es posible acceder a la información enviada en la petición. Por ejemp
 
 ```php
 Route::get('/articulos', function () {
-    $date = request('fecha');
-    return $date;
+    $fecha = request('fecha');
+    return $fecha;
 });
+```
+
+#### Rutas con nombre
+Es posible asignar nombres a las rutas que sirvan para referirnos a ellas. De esta forma, en caso de que la URL de una ruta cambie, únicamente tendremos que cambiarlo en el mismo router y no en todos los ficheros HTML donde estemos enlazando a dicha ruta.
+
+Para especificar el nombre a una ruta, simplemente debemos utilizar la función `name()`, la cual deberá recibir como parámetro el nombre que se desea asignar a la ruta:
+
+```php
+Route::get('/articulos', function () {
+    return "Ruba con nombre!";
+})->name(articulos);
+```
+
+En un futuro veremos cómo generar las URLs a partir de su nombre. Por ejemplo, en lugar de utilizar:
+
+```html
+<a href="/articulos">Ver artículos</a>
+```
+
+utilizaremos:
+
+```html
+<a href="{{ route('articulos') }}>Ver artículos</a>
 ```
 
 ## Paso 4 - Crear una vista
@@ -152,7 +175,7 @@ Cargar y devolver una vista al usuario es tan sencillo como utilizar la función
 ```php
 Route::get('/articulos', function () {
     return view('articulos');
-});
+})->name('articulos');
 ```
 No es necesario indicar la ruta completa de la vista ni la extensión `.blade.php`. Laravel asume que las vistas estarán en la carpeta `/resources/views` y tendrán la extensión `.blade.php`.
 
@@ -228,7 +251,7 @@ Route::get('/articulos', function () {
     	'nombre' => 'Ane Aranceta',
         'articulos' => $articulos
     ]);
-});
+})->name('articulos');
 ```
 
 Los datos se le pasarán como un array de tipo clave-valor.
@@ -662,3 +685,29 @@ Crea una aplicación Laravel que muestre un listado de artículos de la base de 
 
 ## Práctica 2
 Añade a la aplicación anterior una nueva vista que muestre el detalle de un artículo. Se accederá desde la vista del listado de artículos.
+
+## Paso 9 - Enviar formularios
+Los formularios sirven para permitir la comunicación entre el usuario y nuestra aplicación. Es decir, permiten al usuario enviar información que nuestra aplicación procesará para realizar acciones como por ejemplo: autenticar un usuario, insertar un registro en la base de datos, añadir información a la sesión de usuario, etc.
+
+Lo primero será crear un formulario con la información de un artículo:
+
+```html
+<form action="{{ route('articles.store') }}" method="POST">
+    {{ csrf_field() }}
+    <div>
+        <label>Titulo:</label>
+    </div>
+    <div>
+        <input type="text" name="title" id="titulo">
+    </div>
+    <div>
+        <label>Texto del artículo:</label>
+    </div>
+    <div>
+        <textarea name="body" id="body"></textarea>
+    </div>
+    <button type="submit">Crear Artículo</button>
+</form>
+```
+
+
