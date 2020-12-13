@@ -730,4 +730,5 @@ Utilizando el parámetro inyectado `$request`: `$article->title = $request->get(
 
 Utilizando la función `request()`: `$article->title = request('titulo');`
 
-
+## Práctica 3
+Añade a la aplicación una nueva vista para crear nuevos artículos.
