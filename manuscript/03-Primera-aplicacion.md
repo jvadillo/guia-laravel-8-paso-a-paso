@@ -77,7 +77,7 @@ Route::post('/articulos', function () {
 Aparte de ejecutar las acciones definidas para cada ruta, Laravel ejecutará el middlewere específico en función del Router utilizado (por ejemplo, el middlewere relacionado con las peticiones web proveerá de funcionalidades como el estado de la sesión o la protección [CSRF](https://es.wikipedia.org/wiki/Cross-site_request_forgery).
 
 #### Ver las rutas creadas
-Artisan incluye un comando para mostrar todas las rutas de una aplicación de forma rápida. Basta con ejecutar el siguiente comando en la consola:
+La utilidad Artisan de Laravel nos provee de comandos muy útiles (por ejemplo, para crear controladores o migraciones). Disponemos de un comando concreto para mostrar todas las rutas de una aplicación de forma rápida. Basta con ejecutar el siguiente comando en la consola:
 
 ```
 php artisan route:list
@@ -271,12 +271,12 @@ Puedes encontrar toda la información acerca de Blade en la [documentación ofic
 
 
 ## Paso 5 - Crear un Controlador
-Los controladores **contienen la lógica** para atender las peticiones recibidas. En otras palabras, un Controlador es una clase que agrupa el comportamiento de todas las peticiones **relacionadas con una misma entidad**. Por ejemplo, el ArticuloController será el encargado de definir el comportamiento de acciones como: creación de un artículo, modificación de un artóculo, búsqueda de artículos, etc.
+Los controladores **contienen la lógica** para atender las peticiones recibidas. En otras palabras, un Controlador es una clase que agrupa el comportamiento de todas las peticiones **relacionadas con una misma entidad**. Por ejemplo, el controlador `ArticuloController` será el encargado de definir el comportamiento de acciones como: creación de un artículo, modificación de un artóculo, búsqueda de artículos, etc.
 
 #### Creando un Controller
 Existen dos formas de crear un controlador:
 
-- Crear manualmente una clase que extienda de la clase Controller de Laravel dentro del directorio `app/Http/Controllers`.
+- Crear manualmente una clase que extienda de la clase `Controller` de Laravel dentro del directorio `app/Http/Controllers`.
 - Utilizar el comando de Artisan `make:controller`. Artisan es una herramienta que nos provee Laravel para interactuar con la aplicación y ejecutar instrucciones.
 
 En este caso escogeremos la segunda opción y ejecutaremos el siguiente comando:
@@ -285,7 +285,7 @@ En este caso escogeremos la segunda opción y ejecutaremos el siguiente comando:
 php artisan make:controller ArticuloController
 ```
 
-De este modo Laravel creará automáticamente el controlador:.
+De este modo Laravel creará automáticamente el controlador, que vendrá a ser una subclase de la clase `Controller`:.
 
 ```php
 <?php
@@ -309,8 +309,22 @@ class ArticuloController extends Controller
     }
 }
 ```
+En el ejemplo anterior se muestra cómo añadirle métodos que devuelvan vistas (como se puede ver en el caso de la función de nombre `show()`), es decir, mover la lógica de la aplicación del router al controlador.
 
-Añadiendo `--resource` al comando anterior, Artisan añadirá al controlador creado los siete métodos más comunes: `index()`, `create()`, `store()`, `show()`, `edit()`, `update()`, `destroy()`.
+Es posible añadir más opciones al comando `make:controller`, aunque el único obligatorio es el nombre del controlador. Añadiendo `--resource` al comando anterior, Artisan añadirá al controlador creado los siete métodos REST más comunes: `index()`, `create()`, `store()`, `show()`, `edit()`, `update()`, `destroy()`. 
+
+Cada método tiene su función:
+
+| Tipo  | URI | Método  | Acción  |
+|---|---|---|---|
+| GET | /articulos | index | Muestra todos los artículos  |
+| GET | /articulos/create | create | Muestra el formulario para crear un artículo  |
+| POST | /articulos | store | Crea un nuevo artículo a partir de la información recibida  |
+| GET | /articulos/{id} | show | Muestra la información de un artículo  |
+| GET | /articulos/{id}/edit | edit | Muestra el formulario de edición de un artículo  |
+| PUT/PATCH | /articulos/{id} | update | Actualiza el artículo indicado a partir de la información recibida |
+| DELETE | /articulos/{id} | destroy | Elimina el artículo con el ID indicado |
+
 
 #### Enrutar el Controlador
 El siguiente paso es añadir al Router la llamada a los métodos del Controlador.
