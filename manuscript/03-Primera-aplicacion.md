@@ -181,7 +181,7 @@ No es necesario indicar la ruta completa de la vista ni la extensión `.blade.ph
 
 #### Acceder a datos desde la vista
 
-Laravel utiliza el motor de plantillas [Blade](https://laravel.com/docs/6.x/blade) por defecto. Un motor de plantillas permite crear vistas empleando código HTML junto con código específico del motor empleado. De esta forma podremos mostrar información almacenada en variables, crear condiciones if/else, estructuras repetitivas, etc.
+Laravel utiliza el motor de plantillas [Blade](https://laravel.com/docs/8.x/blade) por defecto. Un motor de plantillas permite crear vistas empleando código HTML junto con código específico del motor empleado. De esta forma podremos mostrar información almacenada en variables, crear condiciones if/else, estructuras repetitivas, etc.
 
 En Blade mostrar datos almacenados en variables es muy sencillo:
 
@@ -290,7 +290,7 @@ El motor de plantillas Blade permite el uso de todo tipo de estructuras:
 @endunless
 ```
 
-Puedes encontrar toda la información acerca de Blade en la [documentación oficial](https://laravel.com/docs/6.x/blade).
+Puedes encontrar toda la información acerca de Blade en la [documentación oficial](https://laravel.com/docs/8.x/blade).
 
 
 ## Paso 5 - Crear un Controlador
@@ -618,7 +618,12 @@ Laravel proporciona alternativas para realizar operaciones más complejas, como 
 $articulo = App\Articulo::firstOrCreate(['name' => 'Laptop']);
 ```
 
-Puedes encontrar todas las posibilidades en la [documentación oficial](https://laravel.com/docs/6.x/eloquent).
+Puedes encontrar todas las posibilidades en la [documentación oficial](https://laravel.com/docs/8.x/eloquent).
+
+#### Alternativas a Eloquent ORM
+Laravel también permite interactuar con la base de datos mediante otras técnicas distintas a Eloquent ORM. Las alternativas disponibles son:
+- Raw SQL: se trata de ejecutar sentencias SQL directamente contra la base de datos. Tienes toda la información disponible [aquí](https://laravel.com/docs/8.x/database).
+- Query Builder: es una interfaz de comunicación con la base de datos que permite lanzar prácticamente cualquier consulta. A diferencia de la anterior, no es tan eficiente en cuanto a rendimiento pero aporta otras ventajas como la seguridad y abstracción de base de datos. Tienes toda la información disponible [aquí](https://laravel.com/docs/8.x/queries).
 
 #### Tinker: un potente REPL para Laravel
 Tinker es un potente [REPL](https://es.wikipedia.org/wiki/REPL) o **consola interactiva** que viene por defecto en Laravel. Resulta muy útil durante el desarrollo ya que permite interactuar con nuestra aplicación Laravel y probar cantidad de cosas: eventos, acceso a datos, etc.
