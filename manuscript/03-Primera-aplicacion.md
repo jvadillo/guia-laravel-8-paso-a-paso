@@ -692,7 +692,7 @@ Los formularios sirven para permitir la comunicación entre el usuario y nuestra
 Lo primero será crear un formulario con la información de un artículo:
 
 ```html
-<form action="{{ route('articles.store') }}" method="POST">
+<form action="{{ route('articulos.store') }}" method="POST">
     @csrf
     <input type="text" name="titulo" id="titulo">
     <textarea name="contenido" id="contenido"></textarea>
@@ -714,21 +714,21 @@ El método del controlador encargado de procesar la información y almacenarla e
      */
     public function store(Request $request)
     {
-        $article = new Article;
+        $articulo = new Articulo;
 
-        $article->title = $request->get('titulo'); // acceder a los campos del formulario
-        $article->body = request('contenido'); // método alternativo para acceder a los campos
-        $article->save();
+        $articulo->titulo = $request->get('titulo'); // acceder a los campos del formulario
+        $articulo->contenido = request('contenido'); // método alternativo para acceder a los campos
+        $articulo->save();
 
-        return view('articles.index');
+        return view('articulos.index');
     }
 ```
 
 En el ejemplo anterior se puede apreciar cómo Laravel inyecta en el parámetro de tipo `Request` toda la información enviada en la petición del usuario. Para acceder a dicha información tendremos dos optiones:
 
-Utilizando el parámetro inyectado `$request`: `$article->title = $request->get('titulo');`
+Utilizando el parámetro inyectado `$request`: `$articulo->titulo = $request->get('titulo');`
 
-Utilizando la función `request()`: `$article->title = request('titulo');`
+Utilizando la función `request()`: `$articulo->titulo = request('titulo');`
 
 ## Práctica 3
 Añade a la aplicación una nueva vista para crear nuevos artículos.
