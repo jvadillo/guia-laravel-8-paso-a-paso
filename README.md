@@ -1,13 +1,13 @@
 # Aprende Laravel 8: guía paso a paso :rocket:
 [![Open Source Love png2](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://www.jonvadillo.com) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://www.jonvadillo.com) [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://www.jonvadillo.com)
 
-**Descargar libro [aquí](https://leanpub.com/aprende-laravel/)**
+**Descargar libro de Laravel 6 [aquí](https://leanpub.com/aprende-laravel/)**
 
-Este es un **libro grauito para aprender Laravel paso a paso**, pensado para personas con conocimientos básicos de PHP que quieran comenzar a crear aplicaciones profesionales con el framework de PHP más potente de la actualidad. Ha sido escrito para aprender de forma práctica y ágil, centrándose en los aspectos más útiles del framework (**sin perder el tiempo es cosas que nunca utilizarás**). Mediante pequeñas prácticas y ejemplos irás aprendiendo los fundamentos básicos hasta llegar a crear aplicaciones web robustas y profesionales.
+Este es un **libro online grauito para aprender Laravel paso a paso**, pensado para personas con conocimientos básicos de PHP que quieran comenzar a crear aplicaciones profesionales con el framework de PHP más potente de la actualidad. Ha sido escrito para aprender de forma práctica y ágil, centrándose en los aspectos más útiles del framework (**sin perder el tiempo es cosas que nunca utilizarás**). Mediante pequeñas prácticas y ejemplos irás aprendiendo los fundamentos básicos hasta llegar a crear aplicaciones web robustas y profesionales.
 
-![Portada del libro Aprende Laravel paso a paso](https://github.com/jvadillo/guia-laravel-8-paso-a-paso/blob/master/manuscript/images/small-aprende-laravel-cover.png)
+![Portada del libro Aprende Laravel paso a paso](https://github.com/jvadillo/guia-laravel-6-paso-a-paso/blob/master/manuscript/images/small-aprende-laravel-cover.png)
 
-**Descargar libro [aquí](https://leanpub.com/aprende-laravel/)**
+**Descargar libro (Laravel 6) [aquí](https://leanpub.com/aprende-laravel/)**
 
 ## ¿Qué aprenderás?
 El curso tiene un enfoque muy práctico para que comiences construyendo una aplicación básica e ir añadiendo funcionalidades paso a paso. 
