@@ -14,7 +14,7 @@ Si recibes un error, probablemente sea porque todavía no tienes Composer instal
 composer global require laravel/installer
 ```
 
-Una vez instalado vuelve a ejecutar el comando `create-project` de Composer. Este comando inicializará un nuevo proyecto creado en el directorio `revistapp`. Puedes acceder a la aplicación entrando a http://homestead.test (o el dominio que hayas indicado en la configuración) desde tu navegador favorito.
+Una vez instalado vuelve a ejecutar el comando `create-project` de Composer. Este comando inicializará un nuevo proyecto creando en el directorio `revistapp`. Puedes acceder a la aplicación entrando a http://aplicacion1.test (o el dominio que hayas indicado en la configuración) desde tu navegador favorito.
 
 De forma alternativa también puedes utilizar el comando `laravel new` que también creará un nuevo proyecto de Laravel en la carpeta especificada:
 
@@ -24,7 +24,7 @@ laravel new revistapp
 
 Puedes entrar a la nueva carpeta del proyecto creada, `revistapp`, para ver los archivos que se han generada. A partir de ahora siempre trabajaremos dentro de este directorio. 
 
-Ten en cuenta que en este caso, al haber creado una aplicación llamada `revistapp`, deberás tener una entrada en tu archivo de configuración `.yaml` que referencia a la carpeta `/public` del proyecto recién creado:
+Ten en cuenta que en este caso, al haber creado una aplicación llamada `revistapp`, deberás tener una entrada en tu archivo de configuración `Homestead.yaml` que referencia a la carpeta `/public` del proyecto recién creado:
 
 ```yaml
 sites:
@@ -342,7 +342,11 @@ class ArticuloController extends Controller
 ```
 En el ejemplo anterior se muestra cómo añadirle métodos que devuelvan vistas (como se puede ver en el caso de la función de nombre `show()`), es decir, mover la lógica de la aplicación del router al controlador.
 
-Es posible añadir más opciones al comando `make:controller`, aunque el único obligatorio es el nombre del controlador. Añadiendo `--resource` al comando anterior, Artisan añadirá al controlador creado los siete métodos REST más comunes: `index()`, `create()`, `store()`, `show()`, `edit()`, `update()`, `destroy()`. 
+Es posible añadir más opciones al comando `make:controller`, aunque el único obligatorio es el nombre del controlador. Añadiendo `--resource` al comando anterior, Artisan añadirá al controlador creado los siete métodos REST más comunes: `index()`, `create()`, `store()`, `show()`, `edit()`, `update()`, `destroy()`:
+
+```
+php artisan make:controller ArticuloController --resource
+```
 
 Cada método tiene su función:
 
@@ -361,17 +365,19 @@ Cada método tiene su función:
 El siguiente paso es añadir al Router las llamadas a los métodos del Controlador. En este caso crearemos las siguientes
 
 ```php
-Route::get('articulos/', 'ArticuloController@index');
-Route::get('articulos/{id}', 'ArticuloController@show');
-Route::get('articulos/{id}/create', 'ArticuloController@create');
-Route::post('articulos/', 'ArticuloController@store');
+use App\Http\Controllers\ArticuloController;
+
+Route::get('articulos/', [ArticuloController::class, 'index']);
+Route::get('articulos/{id}', [ArticuloController::class, 'show']);
+Route::get('articulos/{id}/create', [ArticuloController::class, 'create']);
+Route::post('articulos/', [ArticuloController::class, 'store']);
 ```
 De esta forma direccionaremos las peticiones a los métodos de los controladores.
 
 Existe otra forma más rápida para generar automáticamente las rutas a todos los métodos de nuestro controlador:
 
 ```php
-Route::resource('articulos', 'ArticuloController@index');
+Route::resource('articulos', ArticuloController::class);
 ```
 
 Si ejecutamos el comando `php artisan route:list` podemos comprobar cómo ya disponemos de todas las rutas a nuestro recurso y que cada una apunta al método correspondiente en el controlador.
@@ -379,7 +385,9 @@ Si ejecutamos el comando `php artisan route:list` podemos comprobar cómo ya dis
 Esta opción también ofrece la posibilidad de generar únicamente las rutas que le indiquemos. El siguiente ejemplo muestra como generar únicamene las rutas index y create:
 
 ```php
-Route::resource('articulos', 'ArticuloController@index')->only['index','create'];
+Route::resource('articulos', ArticuloController::class)->only([
+    'index', 'create'
+]);
 ```
 
 
