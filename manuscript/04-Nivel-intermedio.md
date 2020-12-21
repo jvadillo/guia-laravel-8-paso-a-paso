@@ -3,8 +3,8 @@
 ## Borrado de registros
 El borrado de registros es un tema que suele traer complicaciones, debido a que desde una página HTML solo es posible enviar peticiones `GET` y `POST` (desde formularios). Por lo tanto, las alternativas son las siguientes:
 
-- Crear una ruta GET específica para el borrado. Por ejemplo: `/removeArticulo/{id}`
-- Hacer la petición utilizando AJAx y especificando en la llamada el tipo de método: `'type': 'DELETE'`
+- Crear una ruta de tipo GET específica para el borrado. Por ejemplo: `/articulos/remove/{id}`
+- Hacer la petición de tipo DELETE utilizando AJAx y especificando en la llamada el tipo de método: `'type': 'DELETE'`
 - Emular la llamada `DELETE` mediante el campo oculto `_method`. Para ello podemos utilizar los helpers o directivas de Laravel en un formulario para notificar que se trata de una petición de tipo `DELETE`:
 
 ```php	
@@ -21,7 +21,8 @@ A partir de Laravel 5.6, se pueden utilizar las siguientes directivas de Blade:
 <form method="POST">
      @csrf
      @method("DELETE")
-     <!-- ... -->
+     
+     <button type="submit">Eliminar</button>
 </form>
 ```
 
@@ -29,13 +30,13 @@ A partir de Laravel 5.6, se pueden utilizar las siguientes directivas de Blade:
 Añade la posibilidad de eliminar artículos mediante un enlace o botón en cada uno de los registros mostrados.
 
 ## Formularios
-Los formularios HTML son la forma más habitual de recoger datos introducidos por los usuarios y enviarlos a la aplicación.
+Los formularios HTML son la forma más habitual de recoger datos introducidos por los usuarios y enviarlos a la aplicación. Es decir, permiten al usuario enviar información que nuestra aplicación procesará para realizar acciones, como por ejemplo: autenticar un usuario, insertar un registro en la base de datos, añadir información a la sesión de usuario, etc.
 
 Para este cometido necesitaremos crear dos nuevas rutas en nuestro Router: una para mostrar al usuario el formulario de recogida de datos y otra para recibir y tratar los datos introducidos por el usuario.
 
 ```php
-Route::get('articulos/create', 'ArticuloController@create');
-Route::post('articulos/', 'ArticuloController@store');
+Route::get('/articulos/create', [ArticuloController::class, 'create'])->name('articulos.create');
+Route::post('/articulos', [ArticuloController::class, 'store'])->name('articulos.store');
 ```
 
 De igual forma que hemos necesitado dos nuevas rutas, también necesitaremos dos nuevos métodos en nuestro Controller:
@@ -64,12 +65,20 @@ class ArticuloController extends Controller
         // Validar el Articulo
         
         // Crear el articulo
-        $articulo = new Articulo();
+        $articulo = new Articulo;
         
-        $articulo->titulo = $request->get('titulo'); // acceder a los campos del formulario
-        $articulo->contenido = request('contenido'); // método alternativo para acceder a los campos
-        
-        $articulo->save();
+        $articulo->titulo = $request->get('titulo'); // acceder al campo titulo del formulario
+        $articulo->contenido = request('contenido'); // método alternativo para acceder a un campo
+        $articulo->save(); // guardar el modelo creado
+	
+	
+	/** Nota: el anterior código podríamos sustituirlo simplemente por:
+	 *
+         $articulo = Articulo::create([
+                'titulo' => request('titulo'),
+		'contenido' => request('contenido')
+         ]);
+	*/
         
         return redirect('/articulos');
     }
@@ -97,7 +106,8 @@ El último paso es crear la vista que contenga el formulario HTML y que será mo
 <html>
     <body>
         <h1>Let's write a new articulo:</h1>
-        <form action="/articulos/create" method="POST">
+        <form action="{{ route('articulos.store') }}" method="POST">
+            @csrf
             <div>
                 <label for="titulo">Name:</label>
                 <input type="text" id="titulo" name="titulo">
@@ -113,6 +123,8 @@ El último paso es crear la vista que contenga el formulario HTML y que será mo
     </body>
 </html>
 ```
+
+La directiva @csrf agrega un campo oculto con el Token de usuario para que Laravel nos proteja automáticamente de ataques XSS o de suplantación de identidad. Es necesario agregar siempre esta directiva.
 
 ## Práctica 4
 Añade la posibilidad de añadir nuevos artículos mediante un formulario ubicado en una nueva vista.
