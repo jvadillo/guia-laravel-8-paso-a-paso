@@ -427,7 +427,10 @@ Las Migraciones (Migrations) se utilizan para construir el esquema de la base de
 php artisan make:migration create_articulos_table --create=articulos
 ```
 
-Laravel creará una nueva migración automáticamente en el directorio `database/migrations`.
+Laravel creará una nueva migración automáticamente en el directorio `database/migrations`. El nombre del archivo creado será el indicado en el comando anterior, en este caso `create_articulos_table`, precedido por un timestamp, por ejemplo: `2020_12_15_192620_create_articulos_table.php`.
+
+El contenido de la clase creada será el siguiente:
+
 
 ```php
 <?php
@@ -447,8 +450,9 @@ class CreateArticulosTable extends Migration
     public function up()
     {
         Schema::create('articulos', function (Blueprint $table) {
+            // Completar con los campos que queremos que contenta la tabla 'articulos':
             $table->increments('id');
-            $table->string('titulo');
+            $table->string('titulo'); 
             $table->text('contenido');
             $table->timestamps();
         });
@@ -473,9 +477,9 @@ Tal y como puedes deducir del código anterior, una migración contiene 2 métod
 - `up()`: se utiliza para crear nuevas tablas, columnas o índices a la base de datos.
 - `down()`: se utiliza para revertir operaciones realizadas por el método `up()`.
 
-Existen una gran variedad de tipos de columnas disponibles para definir las tablas. Puedes encontrarlas en la [documentación oficial](https://laravel.com/docs/4.2/schema#adding-columns).
+Existen una gran variedad de tipos de columnas disponibles para definir las tablas. Puedes encontrarlas en la [documentación oficial](https://laravel.com/docs/8.x/migrations#creating-columns).
 
-Para ejecutar las migraciones simplemente ejecuta el comando `migrate` de Artisan:
+Una vez tenemos definida una migración, solo quedará ejecutarla para que así se ejecute en nuestra base de datos. Para ejecutar las migraciones simplemente lanza el comando `migrate` de Artisan:
 
 ```
 php artisan migrate
