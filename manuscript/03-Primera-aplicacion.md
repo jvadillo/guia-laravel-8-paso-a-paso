@@ -507,7 +507,7 @@ FLUSH PRIVILEGES;
 No olvides actualizar los datos de acceso a base de datos en el fichero de configuración `.env`.
 
 ## Paso 8 - Crear un Modelo
-Laravel incluye por defecto Eloquent ORM, el cual hace de la **interacción con la base de datos** una tarea fácil.Tal y como dice la documentación oficial:
+Laravel incluye por defecto Eloquent ORM, el cual hace de la **interacción con la base de datos** una tarea fácil. Tal y como dice la documentación oficial:
 
 >Each database table has a corresponding "Model" which is used to interact with that table. Models allow you to query for data in your tables, as well as insert new records into the table.
 
