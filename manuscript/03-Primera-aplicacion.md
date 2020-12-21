@@ -2,7 +2,7 @@
 Ahora que ya tenemos nuestro entorno de desarrollo preparado, crearemos una aplicación web con Laravel paso por paso. Al finalizar los 8 pasos que encontrarás en este capítulo, obtendremos como resultado una revista online a la que hemos llamado RevistApp.  Esta aplicación mostrará los artículos de una revista almacenados en una base de datos. ¿Comenzamos ya?
 
 ## Paso 1 - Crea tu primer proyecto
-Accede a tu máquina virtual utilizando el comando `vagrant ssh` y ejecuta el siguiente comando para crear un nuevo proyecto:
+Accede a tu máquina virtual utilizando el comando `vagrant ssh` y posicionate en la carpeta donde almacenarás tus proyectos (la carpeta que has indicado en el archivo de configuración `Homestead.yaml`, por ejemplo: `/home/vagrant/proyects`). Ejecuta el siguiente comando para crear un nuevo proyecto:
 
 ```
 composer create-project --prefer-dist laravel/laravel revistapp
