@@ -84,22 +84,19 @@ keys:
     - c:/Users/USER_NAME/.ssh/id_rsa
 ```
 
-- **Shared folders**: en este apartado se indican los directorios de la máquina local que se mantendrán sincronizados con la máquina virtual creada. Modifica el valor de 'map' y escribe la carpeta de tu proyecto (p.ej. `/Users/USER_NAME/dev/my-project` en Linux/Mac o `c:/dev/my-project` en Windows).
+- **Shared folders**: en este apartado se indican los directorios de tu sistema operativo que se mantendrán sincronizados con la máquina virtual creada. Modifica el valor de 'map' y escribe la carpeta donde almacenas tus proyectos (p.ej. `/Users/USER_NAME/dev/proyectos` en Linux/Mac o `c:/dev/proyectos` en Windows).  En el siguiente ejemplo puedes ver cómo se sincronizarían los ficheros de nuestra carpeta `~/code/projects` en la carpeta `/home/vagrant/projects` de nuestra máquina virtual:
 ```
 folders:
-    - map: ~/code/project1
-      to: /home/vagrant/project1
-
-    - map: ~/code/project2
-      to: /home/vagrant/project2
+    - map: ~/code/projects
+      to: /home/vagrant/projects
 ```
-- **Sites**: La propiedad sites permite mapear fácilmente un dominio con un directorio de nuestro entorno virtual. De este forma podremos utilizar el dominio indicado para acceder a nuestra aplicación desde el navegador:
+- **Sites**: La propiedad sites permite mapear fácilmente un dominio con un directorio de nuestro entorno virtual. De este forma podremos utilizar el dominio indicado (p.ej. aplicacion1.test) para acceder a nuestra aplicación desde el navegador. Ten en cuenta que el punto de entrada a una aplicación de Laravel es el archivo `index.php` ubicado en la carpeta `/public` de nuestro proyecto Laravel, por lo que el dominio tendrá que apuntar siempre a esta carpeta. Por ejemplo:
 ```
 sites:
-    - map: homestead.test
-      to: /home/vagrant/project1/public
-    - map: miapp.test
-      to: /home/vagrant/project2/public
+    - map: aplicacion1.test
+      to: /home/vagrant/projects/aplicacion1/public
+    - map: aplicacion2.test
+      to: /home/vagrant/projects/aplicacion2/public
 ```
 
 #### 8. Configurar el archivo local hosts
