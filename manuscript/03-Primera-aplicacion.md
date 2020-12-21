@@ -520,7 +520,7 @@ Vamos a crear un Modelo:
 php artisan make:model Articulo
 ```
 
-El comando anterior ha creado una clase llamada Articulo en el directorio `app` (es el directorio por defecto para los modelos de Eloquent).
+El comando anterior ha creado una clase llamada Articulo en el directorio `app/Models` (es el directorio por defecto para los modelos de Eloquent a partir de Laravel 8).
 
 ```php
 <?php
