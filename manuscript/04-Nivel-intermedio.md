@@ -61,19 +61,33 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the Articulo
+        // Validar el Articulo
         
-        // Create the articulo
+        // Crear el articulo
         $articulo = new Articulo();
         
-        $articulo->titulo = request('titulo');
-        $articulo->contenido = request('contenido');
+        $articulo->titulo = $request->get('titulo'); // acceder a los campos del formulario
+        $articulo->contenido = request('contenido'); // método alternativo para acceder a los campos
         
         $articulo->save();
         
         return redirect('/articulos');
     }
 }
+```
+
+En el ejemplo anterior se puede apreciar cómo Laravel inyecta en el parámetro de tipo `Request` toda la información enviada en la petición del usuario. Para acceder a dicha información tendremos dos optiones:
+
+Utilizando el parámetro inyectado `$request`:
+
+```php
+$articulo->titulo = $request->get('titulo');
+```
+
+Utilizando la función `request()`:
+
+```php
+$articulo->titulo = request('titulo');
 ```
 
 El último paso es crear la vista que contenga el formulario HTML y que será mostrada al usuario al invocar el método `create()` del controlador:
