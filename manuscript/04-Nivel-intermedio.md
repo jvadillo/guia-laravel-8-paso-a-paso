@@ -179,9 +179,9 @@ Crea un layout que englobe la parte común que contienen todas las vistas de la 
 Una práctica muy habitual es asignar nombres a las rutas, lo cual es realmente sencillo:
 
 ```php
-Route::get('articulos/', 'ArticuloController@index')->name('articulos.index');
-Route::get('articulos/create', 'ArticuloController@index')->name('articulos.create');
-Route::get('articulos/{id}', 'ArticuloController@show')->name('articulos.show');
+Route::get('articulos/', [ArticuloController::class, 'index'])->name('articulos.index');
+Route::get('articulos/{id}', [ArticuloController::class, 'show'])->name('articulos.show');
+Route::get('articulos/{id}/create', [ArticuloController::class, 'create'])->name('articulos.create');
 ```
 
 Como se puede deducir del ejemplo anterior, utlizamos el método `name()` para definir el nombre que queremos establecer para cada ruta.
