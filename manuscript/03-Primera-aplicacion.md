@@ -22,7 +22,15 @@ De forma alternativa también puedes utilizar el comando `laravel new` que tambi
 laravel new revistapp
 ```
 
-Puedes entrar a ver los archivos que se han creado en la nueva carpeta del proyecto. A partir de ahora siempre trabajaremos dentro de este directorio. 
+Puedes entrar a la nueva carpeta del proyecto creada, `revistapp`, para ver los archivos que se han generada. A partir de ahora siempre trabajaremos dentro de este directorio. 
+
+Ten en cuenta que en este caso, al haber creado una aplicación llamada `revistapp`, deberás tener una entrada en tu archivo de configuración `.yaml` que referencia a la carpeta `/public` del proyecto recién creado:
+
+```yaml
+sites:
+    - map: articulos.test
+      to: /home/vagrant/code/revistapp/public
+```
 
 ## Paso 2 - Configura el proyecto
 
