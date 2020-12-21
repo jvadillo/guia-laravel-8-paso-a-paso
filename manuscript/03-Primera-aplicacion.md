@@ -137,7 +137,7 @@ Para especificar el nombre a una ruta, simplemente debemos utilizar la función 
 ```php
 Route::get('/articulos', function () {
     return "Ruba con nombre!";
-})->name(articulos);
+})->name('articulos');
 ```
 
 En un futuro veremos cómo generar las URLs a partir de su nombre. Por ejemplo, en lugar de utilizar:
