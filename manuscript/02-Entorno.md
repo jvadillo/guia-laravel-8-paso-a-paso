@@ -105,8 +105,8 @@ Es probable que vayas a utilizar el entorno virtual creado para múltiples proye
 Modifica el archivo `hosts` (lo encontrarás en `/etc/hosts` en Mac/Linux y en `C:\Windows\System32\drivers\etc\hosts` en Windows):
 
 ```
-192.168.10.10  homestead.test
-192.168.10.10  miapp.test
+192.168.10.10  aplicacion1.test
+192.168.10.10  aplicacion2.test
 ```
 
 Para evitar otro tipo de problemas, la recomendación general es utilizar dominios de tipo ".localhost", ".invalid", ".test", or ".example".
