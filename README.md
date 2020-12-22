@@ -14,7 +14,7 @@ El curso tiene un enfoque muy práctico para que comiences construyendo una apli
 
  1. [Introducción](https://github.com/jvadillo/guia-laravel-8-paso-a-paso/blob/master/manuscript/01-Introduccion.md): qué es Laravel, características principales y su ecosistema. 
  2. [Preparar el entorno de desarrollo](https://github.com/jvadillo/guia-laravel-8-paso-a-paso/blob/master/manuscript/02-Entorno.md): 
- 3. [Tu primera aplicación en 9 pasos](https://github.com/jvadillo/guia-laravel-8-paso-a-paso/blob/master/manuscript/03-Primera-aplicacion.md)
+ 3. [Tu primera aplicación en 8 pasos](https://github.com/jvadillo/guia-laravel-8-paso-a-paso/blob/master/manuscript/03-Primera-aplicacion.md)
  4. [Laravel nivel intermedio](https://github.com/jvadillo/guia-laravel-8-paso-a-paso/blob/master/manuscript/04-Nivel-intermedio.md)
  5. [Próximos pasos](https://github.com/jvadillo/guia-laravel-8-paso-a-paso/blob/master/manuscript/99-Proximos-pasos.md)
 
