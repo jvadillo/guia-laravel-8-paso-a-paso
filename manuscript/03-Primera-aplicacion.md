@@ -408,7 +408,7 @@ DB_PASSWORD=contraseña del usuario(root)
 Todas estas variables de configuración serán referenciadas desde el archivo de configuración `database.php`.
 
 #### Creación de la base de datos
-Accede al cliente de MySQL como root:
+Este paso solo será necesario si no le hemos indicado a Homestead en su archivo de configuración `Homestead.yaml` que cree una base de datos. Accede al cliente de MySQL como root:
 
 ```
 mysql -u root
@@ -419,6 +419,22 @@ Crea la base de datos si no está creada:
 ```
 CREATE DATABASE revistapp;
 ```
+
+#### Creación del usuario para la base de datos
+Es recomendable crear un usuario de base de datos para nuestra aplicación diferente a `root`. Para ello ejecuta los siguientes comandos:
+
+```
+mysql> CREATE USER 'dev'@'localhost' IDENTIFIED BY '12345Abcde';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'dev'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+```
+
 
 ## Paso 7 - Crear la Migración (Migration)
 Las Migraciones (Migrations) se utilizan para construir el esquema de la base de datos. Ejecuta el siguiente comando de Artisan para crear una nueva Migración para una tabla que llamaremos "articulos". 
