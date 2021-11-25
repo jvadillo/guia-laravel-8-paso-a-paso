@@ -241,6 +241,9 @@ En ocasiones puede haber problemas si la máquina virtual se ejecuta en un host 
 ```bash
 npm install --no-bin-links
 ```
+Este problema viene porque al realizar la acción `npm install` dentro de nuestra máquina virtual (Linux) se intentan crear enlaces simbólicos, pero al estar ésta sincronizada con Windows (sistema operativo del host) salta el error ya que esto no es posible en un sistema NTFS.
+
+En caso de que el error persista, puede que sea necesario hacer antes un borrado (`rm -rf node_modules`) y luego ejecutar `npm install --no-bin-links`.
 
 #### 4. Compilar el código JS y CSS mediante Webpack:
 ```bash
