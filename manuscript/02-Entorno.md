@@ -128,3 +128,12 @@ vagrant ssh
 
 
 Puedes detener la máquina virtual con el comando `vagrant halt`.
+
+
+##### Error 'input file not specified'
+Es posible que al intentar cargar una aplicación el navegador te muestre el mensaje 'input file not specified'. Esto es algo común cuando por ejemplo cambiamos el archivo `host` y añadimos alguna URL más. En caso de que te aparezca este error, para la máquina virtual y vuélvela arrancar con el siguiente comando:
+
+```
+vagrant up --provision
+```
+
