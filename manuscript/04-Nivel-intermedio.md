@@ -250,6 +250,11 @@ En caso de que el error persista, puede que sea necesario hacer antes un borrado
 npm run dev
 ```
 
+Es posible que ejecutar el comando desde la máquina virtual dé error. Si es así, ejecutarlo desde el la máquina host.
+
+En caso de tener algún problema con el reconocimiento de la herramienta Laravel Mix, volver a instalarla mediante el comando ` npm install laravel-mix@latest
+` y una vez terminada su instalación lanzar el comando `npm run dev`.
+
 #### 5. Incluir los ficheros generados (`public/js/app.js` y `public/css/app.css`) en nuestras vistas, utilizando el método helper `asset()`:
 
 ```html
