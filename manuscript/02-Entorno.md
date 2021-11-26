@@ -137,3 +137,8 @@ Es posible que al intentar cargar una aplicación el navegador te muestre el men
 vagrant up --provision
 ```
 
+
+#### Bonus: Extensiones de VS Code para desarrollar en Laravel
+Puedes instalar algunas extensiones de VS Code para facilitar el desarrollo con Laravel. En el siguiente enlace tienes una recopilación de las más recomendadas:
+
+https://devdojo.com/bobbyiliev/8-awesome-vs-code-extensions-for-laravel-developers
