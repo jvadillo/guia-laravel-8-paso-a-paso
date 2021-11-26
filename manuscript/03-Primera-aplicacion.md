@@ -527,7 +527,7 @@ Laravel incluye por defecto Eloquent ORM, el cual hace de la **interacción con 
 
 >Each database table has a corresponding "Model" which is used to interact with that table. Models allow you to query for data in your tables, as well as insert new records into the table.
 
-En otras palabras, cada tabla de la base de datos corresponde a un Modelo, el cual permite ejecutar operaciones sobre esa tabla (insertar o leer registros por ejemplo).
+En otras palabras, cada tabla de la base de datos corresponde a un Modelo, el cual permite ejecutar operaciones sobre esa tabla (insertar o leer registros por ejemplo). El nombre del modelo será la forma singular del nombre asignado a la tabla de la base de datos. Por ejemplo: `User` será el modelo correspondiente a la tabla `users`.
 
 #### Creando un Modelo
 Vamos a crear un Modelo:
