@@ -137,6 +137,23 @@ Es posible que al intentar cargar una aplicación el navegador te muestre el men
 vagrant up --provision
 ```
 
+##### Error de VBoxManage
+Es posible que a la hora de hacer `vagrant up` no finalice correctamente y muestre el siguiente error:
+
+```
+There was an error while executing `VBoxManage`, a CLI used by Vagrant
+for controlling VirtualBox. The command and stderr is shown below.
+
+Command: ["startvm", "b3d4e98d-8a88-4335-8430-28a731e02f07", "--type", "headless"]
+
+Stderr: VBoxManage.exe: error: Failed to open/create the internal network 'HostInterfaceNetworking-VirtualBox Host-Only Ethernet Adapter #2' (VERR_INTNET_FLT_IF_NOT_FOUND).
+VBoxManage.exe: error: Failed to attach the network LUN (VERR_INTNET_FLT_IF_NOT_FOUND)
+VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component ConsoleWrap, interface IConsole.
+```
+
+El error puede ser debido a las versiones de Vagrant y VirtualBox utilizadas. Para solucionarlo debería ser suficiente con actualizar VirtualBox.
+También puede ser necesario desinstalar el Extension Pack anterior e instalar la última versión.
+
 
 #### Bonus: Extensiones de VS Code para desarrollar en Laravel
 Puedes instalar algunas extensiones de VS Code para facilitar el desarrollo con Laravel. En el siguiente enlace tienes una recopilación de las más recomendadas:
