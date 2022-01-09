@@ -5,7 +5,7 @@ Ahora que ya tenemos nuestro entorno de desarrollo preparado, crearemos una apli
 Accede a tu máquina virtual utilizando el comando `vagrant ssh` y posicionate en la carpeta donde almacenarás tus proyectos (la carpeta que has indicado en el archivo de configuración `Homestead.yaml`, por ejemplo: `/home/vagrant/proyects`). Ejecuta el siguiente comando para crear un nuevo proyecto:
 
 ```
-composer create-project --prefer-dist laravel/laravel revistapp
+composer create-project laravel/laravel revistapp
 ```
 
 Si recibes un error, probablemente sea porque todavía no tienes Composer instalado en tu máquina virtual. Para ello, ejecuta el siguiente comando:
