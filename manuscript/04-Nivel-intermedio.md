@@ -289,7 +289,7 @@ class User extends Model
      */
     public function articulos()
     {
-        return $this->hasMany('App\Articulo');
+        return $this->hasMany('App\Models\Articulo');
     }
 }
 ```
@@ -302,7 +302,7 @@ class Articulo extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 }
 ```
@@ -310,7 +310,7 @@ class Articulo extends Model
 El acceso se podrá hacer como propiedades del propio modelo, es decir, mediante `$user->articulos` o `$articulo->user`. Esto es gracias a que Eloquent utiliza lo que conocemos como 'dynamic properties' y acceder a los métodos de las relaciones como si fuesen propiedades:
 
 ```php
-$user = App\User::find(1); // Ejecuta la sentencia: select * from users where id = 1
+$user = App\Models\User::find(1); // Ejecuta la sentencia: select * from users where id = 1
 
 $user_articulos = $user->articulos; // Ejecutara la sentencia: select * from articulos where user_id = 1
 
