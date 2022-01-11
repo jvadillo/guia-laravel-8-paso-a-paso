@@ -157,7 +157,7 @@ En un futuro veremos cómo generar las URLs a partir de su nombre. Por ejemplo, 
 utilizaremos:
 
 ```html
-<a href="{{ route('articulos') }}>Ver artículos</a>
+<a href="{{ route('articulos') }}">Ver artículos</a>
 ```
 
 ## Paso 4 - Crear una vista
