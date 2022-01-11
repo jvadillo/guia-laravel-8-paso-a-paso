@@ -289,7 +289,7 @@ class User extends Model
      */
     public function articulos()
     {
-        return $this->hasMany('App\Models\Articulo');
+        return $this->hasMany(Articulo::class);
     }
 }
 ```
@@ -302,7 +302,7 @@ class Articulo extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 }
 ```
