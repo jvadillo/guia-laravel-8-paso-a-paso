@@ -674,31 +674,31 @@ php artisan tinker
 A partir de ese momento se puede comenzar a interactuar con nuestra aplicación, como muestra el ejemplo a continuación:
 
 ```bash
->>> $articulo = new App\Articulo
+>>> $articulo = new App\Models\Articulo
 => App\Articulo {#3014}
 >>> $articulo->titulo="AA";
 => "AA"
 >>> $articulo->contenido="BBBB";
 => "BBBB"
 >>> $articulo
-=> App\Articulo {#3014
+=> App\Models\Articulo {#3014
      titulo: "Articulo numero 2",
      contenido: "Lorem ipsum...",
    }
 >>> $articulos->save();
->>> \App\Articulo::count();
+>>> App\Models\Articulo::count();
 => 2
->>> $articulos = App\Articulo::all();
+>>> $articulos = App\Models\Articulo::all();
 => Illuminate\Database\Eloquent\Collection {#3035
      all: [
-       App\Articulo {#3036
+       App\Models\Articulo {#3036
          id: 1,
          titulo: "Articulo numero 1",
          contenido: "Lorem ipsum...",
          created_at: null,
          updated_at: null,
        },
-       App\Articulo {#3046
+       App\Models\Articulo {#3046
          id: 2,
          titulo: "Articulo numero 2",
          contenido: "Lorem ipsum...",
