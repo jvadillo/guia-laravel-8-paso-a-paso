@@ -322,7 +322,7 @@ foreach ($user_articulos as $articulo) {
 En el ejemplo anterior, la variable `$user_articulos` contiene una colección de objetos de la clase `Articulo`. 
 
 #### Claves foráneas (Foreign keys)
-Por defecto, si no indicamos lo contrario, Eloquent utilizará como foreign key el nombre del modelo que contiene la colección añadiendo el sufijo `'_id'`. Es decir, en el caso anterior la tabla de `Articulo` deberá contener una columna llamada `'user_id'`.
+Como es lógico, para que el modelo pueda acceder a otro modelo con el que mantiene una relación one-to-many, es necesario especificar la foreign key correspondiente a nivel de base de datos. Por defecto, si no indicamos lo contrario, el modelo de Eloquent utilizará como foreign key el nombre del modelo que contiene la colección añadiendo el sufijo `'_id'`. Es decir, en el caso anterior la tabla de `Articulo` deberá contener una columna llamada `'user_id'`, ya que el nombre del otro modelo es `User`.
 
 ```php
     public function up()
