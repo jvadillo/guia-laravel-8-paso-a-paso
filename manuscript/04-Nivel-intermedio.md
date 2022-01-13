@@ -480,8 +480,8 @@ La vista de detalle de artículo mostrará los comentarios del artículo e inclu
 ## Práctica 7
 Asigna nombres a las rutas y utilízalos desde los controladores y vistas de la aplicación.
 
-## Práctica 8
-Añade estilo a la aplicación mediante Bootstrap 4.
+## Práctica 8 (opcional)
+Añade estilo a la aplicación mediante Bootstrap 4 o Bootstrap 5.
 
 ## Autenticación
 La autenticación es una funcionalidad presente en la gran mayoría de aplicaciones. Básicamente se trata de asegurar que un usuario es quién dice ser mediante un control de acceso a la aplicación.
