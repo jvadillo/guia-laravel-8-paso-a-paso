@@ -473,7 +473,7 @@ public function run()
 }
 ```
 
-#### Generar Seeders específicos
+#### Uso de factories
 A la hora de generar datos para testing también es recomendable utilizar Factories para crear los objetos de BBDD. Una Factory simplemente es una clase que define los atributos que tendrá un objeto en su creación. En el siguiente ejemplo se muestra una posible factory para la clase Articulo:
 
 ```
