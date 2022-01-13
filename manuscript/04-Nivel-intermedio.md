@@ -473,6 +473,57 @@ public function run()
 }
 ```
 
+#### Generar Seeders específicos
+A la hora de generar datos para testing también es recomendable utilizar Factories para crear los objetos de BBDD. Una Factory simplemente es una clase que define los atributos que tendrá un objeto en su creación. En el siguiente ejemplo se muestra una posible factory para la clase Articulo:
+
+```
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ArticuloFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'titulo' => $this->faker->text($maxNbChars = 50),
+            'contenido' => $this->faker->text($maxNbChars = 400)
+        ];
+    }
+}
+
+```
+Es suficiente con implementar el método `definition` y especificar en él las propiedades del objeto que se creará. 
+Una vez tenemos creadas las factories, solo nos quedaría utilizarlas desde el Seeder correspondiente:
+
+```
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        \App\Models\Articulo::factory(20)->create();
+    }
+}
+```
+
+La creación de factories se puede realizar mediante el comando `php artisan make:factory`. Por ejemplo:
+
+```
+php artisan make:factory ArticuloFactory
+```
+
 
 ## Práctica 6
 La vista de detalle de artículo mostrará los comentarios del artículo e incluirá la posibilidad de añadir nuevos comentarios.
