@@ -424,8 +424,8 @@ class DatabaseSeeder extends Seeder
 
         for($i=0;$i<10;$i++){
             DB::table('articulos')->insert([
-                'titulo' => $faker->realText(50,2),
-                'contenido' => $faker->realText(400,2)
+                'titulo' => $faker->text(50),
+                'contenido' => $faker->text(400)
             ]);
         }
     }
