@@ -420,7 +420,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
 
         for($i=0;$i<10;$i++){
             DB::table('articulos')->insert([
