@@ -537,7 +537,8 @@ Añade estilo a la aplicación mediante Bootstrap 4 o Bootstrap 5.
 ## Autenticación
 La autenticación es una funcionalidad presente en la gran mayoría de aplicaciones. Básicamente se trata de asegurar que un usuario es quién dice ser mediante un control de acceso a la aplicación.
 
-Laravel 6 nos trae de serie los elementos necesarios para implementar la autenticación en nuestras aplicaciones y no tener que preocuparnos de hacer todas las tareas por nosotros mismos (login, registro, recuperación de contraseña, validación de usuario, etc.).
+### Autenticación con Laravel UI
+A partir de la versión 6 de Laravel es posible utilizar el paquete `laravel/ui` para implementar funcionalidades de autenticación. Laravel UI nos trae de serie algunos elementos necesarios para implementar la autenticación en nuestras aplicaciones y no tener que preocuparnos de hacer todas las tareas por nosotros mismos (login, registro, recuperación de contraseña, validación de usuario, etc.).
 
 En concreto necesitaremos lo siguiente:
 - Generar las vistas (login, registro, etc.), rutas y sus respectivas implementaciones.
@@ -549,25 +550,22 @@ El primer paso es instalar el paquete de laravel/ui mediante Composer:
 composer require laravel/ui
 ```
 
-Este paquete nos permitirá generar de forma automática todo lo relacionado con la interfaz de usuario: vistas, rutas y un nuevo controlador llamado `HomeController`. Para ello utilizaremos el siguiente comando:
+Este paquete nos permitirá generar de forma automática todo lo relacionado con la interfaz de usuario: vistas, rutas y un nuevo controlador llamado `HomeController`. Tail y como dice la documentación oficial, en función de nuestras necesidades, podremos elegir entre uno de los siguientes comandos:
 
 ```
-php artisan ui:auth
-```
+// Generate basic scaffolding...
+php artisan ui bootstrap
+php artisan ui vue
+php artisan ui react
 
-Puesto que las vistas autogeneradas utilizan bootstrap, debemos o bien añadir manualmente bootstrap al layout generado `app.blade.php`:
-
-```html
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+// Generate login / registration scaffolding...
+php artisan ui bootstrap --auth
+php artisan ui vue --auth
+php artisan ui react --auth
 
 ```
 
-o indicar la opción `bootstrap` al ejecutar el comando artisan:
-
+En el caso de esta guía ejecutaremos el comando que genera las funciones de login y registro utilizando el framework Bootstrap:
 ```
 php artisan ui bootstrap --auth
 ```
@@ -661,6 +659,33 @@ if (Auth::check()) {
     // El usuario está autenticado.
 }
  ```
+
+### Autenticación con Laravel UI
+A partir de la versión 8 de Laravel se recomienda utilizar Laravel Breeze, el cual utiliza Tailwind CSS en lugar de Bootstrap. Este aspecto es importante ya que afecta a las vistas creadas. Laravel Breeze es una implementación sencilla de las funciones más habituales de autenticación como: login, registro, recuperación de contraseña, verificación de correo electrónico o confirmación de contraseña por correo. Para ello creará todas las vistas, rutas y controladores necesarios y además los dejará disponibles en el código de nuestro proyecto para que podamos modificar todo aquello que necesitemos.
+
+Para instalar Laravel Breeze es necesario lanzar el siguiente comando para instalar el paquete utilizando Composer:
+
+```
+composer require laravel/breeze --dev
+```
+
+A continuación el siguiente comando generará todo el código necesario en tu proyecto:
+
+```
+php artisan breeze:install
+```
+
+El comando anterior habra hecho varios cambios en el proyecto, como por ejemplo:
+- Crear los controladores necesarios para el login, registro, recuperación de contraseña, etc.
+- Crear las vistas empleadas por los controladores (utilizando Tailwind CSS).
+- Crear una vista llamada Dashboard que utilizaremos cuando un usuario se autentica correctamente.
+- Crear los ficheros CSS y JS necesarios, que luego habrá que compilar.
+- Crear las rutas relacionadas con la autenticación en el archivo `auth.php`.
+
+Al igual que se hace con el resto de archivos estáticos que queremos compilar y publicar en la carpeta `/public`, tendremos que lanzar los comandos `npm install` y `
+npm run dev`.
+
+Por último, no olvides lanzar las migraciones necesarias mediante el comando `php artisan migrate`.
 
 ## Práctica 9
 - Añade las funciones de login, registro y logout a la aplicación.
