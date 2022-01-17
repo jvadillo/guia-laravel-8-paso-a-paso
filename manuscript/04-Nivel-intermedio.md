@@ -699,7 +699,7 @@ HTTP es un protocolo sin estado (stateless), es decir, no guarda ninguna informa
 #### Configuración
 Laravel soporta el manejo de sesiones con distintos backends (bases de datos, ficheros, etc.). Esta configuración se indica en el fichero `config/session.php`, en le que podemos indicar el driver a utilizar ("file", "cookie", "database", "apc", "memcached", "redis", "dynamodb" o "array"). La opción utilizada por defecto es "cookie", la cual es suficiente para la mayoría de aplicaciones.
 
-Más información sobre la configuración en la [documentación oficial](https://laravel.com/docs/6.x/session).
+Más información sobre la configuración en la [documentación oficial](https://laravel.com/docs/8.x/session).
 
 #### Uso de las sesiones
 Existen dos formas principales de acceder a la información de la sesión de usuario:
@@ -730,6 +730,12 @@ Existen dos formas principales de acceder a la información de la sesión de usu
 	// Recuperar un valor y eliminarlo de la sesión
 	$value = $request->session()->pull('key', 'default');
     }
+ ```
+ 
+ También es posible acceder a valores de la sesión desde las vistas de Blade utilizardo la función `get()`:
+ 
+ ```
+ Session::get('key')
  ```
  
 ## Práctica 10
